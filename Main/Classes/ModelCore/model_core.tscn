@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3bqgm86dpuv0"]
+
+[ext_resource type="Script" path="res://Main/Classes/ModelCore/model_core.gd" id="1_ees4q"]
+
+[node name="ModelCore" type="RigidBody2D"]
+input_pickable = true
+sleeping = true
+script = ExtResource("1_ees4q")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

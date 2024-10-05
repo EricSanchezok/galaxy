@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2p2nqsc8x4lb"]
+
+[ext_resource type="Texture2D" uid="uid://bibdplx8c4qiv" path="res://Assets/Blocks/Blocks.png" id="1_hpaua"]
+[ext_resource type="Script" path="res://Main/Classes/ItemIcon/item_icon.gd" id="2_hobxl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwm3g"]
+atlas = ExtResource("1_hpaua")
+region = Rect2(0, 0, 16, 16)
+
+[node name="ItemIcon" type="TextureRect"]
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_uwm3g")
+script = ExtResource("2_hobxl")

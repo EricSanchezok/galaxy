@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsqf2jls0d6d8"]
+
+[ext_resource type="PackedScene" uid="uid://cplec8vnuoeeu" path="res://Main/Classes/Button/my_button.tscn" id="1_s84br"]
+[ext_resource type="Shader" path="res://Main/Classes/Button/my_button_hover.gdshader" id="2_bb2fs"]
+[ext_resource type="Texture2D" uid="uid://ck1362ctg5b0f" path="res://Assets/Ui/Ui.png" id="3_aango"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gkgor"]
+resource_local_to_scene = true
+shader = ExtResource("2_bb2fs")
+shader_parameter/is_hover = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7wap"]
+atlas = ExtResource("3_aango")
+region = Rect2(32, 0, 16, 16)
+
+[node name="ButtonCross" instance=ExtResource("1_s84br")]
+
+[node name="TextureRect_Icon" parent="." index="0"]
+material = SubResource("ShaderMaterial_gkgor")
+texture = SubResource("AtlasTexture_g7wap")

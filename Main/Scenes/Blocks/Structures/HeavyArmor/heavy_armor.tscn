@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dyusr5aouwvb7"]
+
+[ext_resource type="PackedScene" uid="uid://bqxynhnxmn054" path="res://Main/Classes/BlockBase/block_base.tscn" id="1_vpbu8"]
+[ext_resource type="Script" path="res://Main/Scenes/Blocks/Structures/HeavyArmor/heavy_armor.gd" id="2_vjbq4"]
+[ext_resource type="Texture2D" uid="uid://bibdplx8c4qiv" path="res://Assets/Blocks/Blocks.png" id="3_t5dlv"]
+[ext_resource type="Script" path="res://Main/Classes/CombiningMarker/combining_marker.gd" id="4_chmg1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_faxma"]
+atlas = ExtResource("3_t5dlv")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eoxi5"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tiuiw"]
+radius = 16.0
+
+[node name="HeavyArmor" instance=ExtResource("1_vpbu8")]
+mass = 5.0
+script = ExtResource("2_vjbq4")
+id = 1
+max_durability = 100
+
+[node name="Sprite2D_Icon" parent="." index="0"]
+texture = SubResource("AtlasTexture_faxma")
+
+[node name="CollisionShape2D_Phy" parent="." index="1"]
+shape = SubResource("RectangleShape2D_eoxi5")
+
+[node name="CombiningMarker" type="Marker2D" parent="CombiningMarkers" index="0"]
+position = Vector2(0, 8)
+script = ExtResource("4_chmg1")
+marker_dir = 1
+
+[node name="CombiningMarker2" type="Marker2D" parent="CombiningMarkers" index="1"]
+position = Vector2(8, 0)
+script = ExtResource("4_chmg1")
+marker_dir = 3
+
+[node name="CombiningMarker3" type="Marker2D" parent="CombiningMarkers" index="2"]
+position = Vector2(0, -8)
+script = ExtResource("4_chmg1")
+
+[node name="CombiningMarker4" type="Marker2D" parent="CombiningMarkers" index="3"]
+position = Vector2(-8, 0)
+script = ExtResource("4_chmg1")
+marker_dir = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Drag" index="0"]
+shape = SubResource("CircleShape2D_tiuiw")

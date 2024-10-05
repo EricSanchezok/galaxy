@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqxynhnxmn054"]
+
+[ext_resource type="Script" path="res://Main/Classes/BlockBase/block_base.gd" id="1_elwo3"]
+
+[node name="BlockBase" type="RigidBody2D"]
+collision_mask = 7
+input_pickable = true
+freeze_mode = 1
+script = ExtResource("1_elwo3")
+
+[node name="Sprite2D_Icon" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D_Phy" type="CollisionShape2D" parent="."]
+
+[node name="CombiningMarkers" type="Node2D" parent="."]
+
+[node name="Area2D_Drag" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="Line2D_Combine" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 2.0
+
+[connection signal="area_entered" from="Area2D_Drag" to="." method="_on_area_2d_drag_area_entered"]
+[connection signal="area_exited" from="Area2D_Drag" to="." method="_on_area_2d_drag_area_exited"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtwr4uub3u5j3"]
+
+[ext_resource type="PackedScene" uid="uid://cplec8vnuoeeu" path="res://Main/Classes/Button/my_button.tscn" id="1_nfxdq"]
+[ext_resource type="Shader" path="res://Main/Classes/Button/my_button_hover.gdshader" id="2_0hiwe"]
+[ext_resource type="Texture2D" uid="uid://ck1362ctg5b0f" path="res://Assets/Ui/Ui.png" id="2_torwd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_egod7"]
+resource_local_to_scene = true
+shader = ExtResource("2_0hiwe")
+shader_parameter/is_hover = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw6e4"]
+atlas = ExtResource("2_torwd")
+region = Rect2(0, 0, 16, 16)
+
+[node name="ButtonEdit" instance=ExtResource("1_nfxdq")]
+offset_right = 16.0
+offset_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+icon_alignment = 1
+
+[node name="TextureRect_Icon" parent="." index="0"]
+material = SubResource("ShaderMaterial_egod7")
+texture = SubResource("AtlasTexture_pw6e4")
