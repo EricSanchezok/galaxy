@@ -1,13 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cplec8vnuoeeu"]
+[gd_scene load_steps=3 format=3 uid="uid://cplec8vnuoeeu"]
 
 [ext_resource type="Theme" uid="uid://uj5socmwxcml" path="res://Main/Theme/my_theme.tres" id="1_5ex3f"]
 [ext_resource type="Script" path="res://Main/Classes/Button/my_button.gd" id="1_btbsj"]
-[ext_resource type="Shader" path="res://Main/Classes/Button/my_button_hover.gdshader" id="3_q1ik7"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4bgyq"]
-resource_local_to_scene = true
-shader = ExtResource("3_q1ik7")
-shader_parameter/is_hover = null
 
 [node name="MyButton" type="Button"]
 custom_minimum_size = Vector2(16, 16)
@@ -16,7 +10,6 @@ theme = ExtResource("1_5ex3f")
 script = ExtResource("1_btbsj")
 
 [node name="TextureRect_Icon" type="TextureRect" parent="."]
-material = SubResource("ShaderMaterial_4bgyq")
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 0
 offset_right = 16.0

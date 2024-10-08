@@ -17,10 +17,10 @@ func animate_scale(is_reduce: bool) -> void:
 		tween_scale.tween_property(self, "scale", Vector2(1.0, 1.0), 0.2)
 		
 func _on_mouse_entered() -> void:
-	texture_rect_icon.material.set_shader_parameter("is_hover", true)
+	pass
 		
 func _on_mouse_exited() -> void:
-	texture_rect_icon.material.set_shader_parameter("is_hover", false)
+	pass
 
 func _on_button_down() -> void:
 	animate_scale(true)

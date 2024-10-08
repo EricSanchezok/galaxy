@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bquitpered3n3" path="res://Assets/Characters/TestPlayer/run.png" id="4_qkek5"]
 [ext_resource type="Texture2D" uid="uid://ck1362ctg5b0f" path="res://Assets/Ui/Ui.png" id="4_usko1"]
 [ext_resource type="Texture2D" uid="uid://c45hjo5lmmb3a" path="res://Assets/Characters/TestPlayer/walk.png" id="5_jfi0s"]
-[ext_resource type="PackedScene" uid="uid://bsqf2jls0d6d8" path="res://Main/Scenes/Ui/ButtonCross/button_cross.tscn" id="5_vixu2"]
+[ext_resource type="PackedScene" uid="uid://30ji58rhalyx" path="res://Main/Scenes/Ui/ButtonDeleteBlock/button_delete_block.tscn" id="7_ba4dr"]
 
 [sub_resource type="Animation" id="Animation_78apy"]
 length = 0.001
@@ -41,7 +41,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_hfpfn"]
 resource_name = "hide_screen"
-length = 0.5
+length = 0.3
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -50,7 +50,7 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -62,7 +62,7 @@ tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -70,7 +70,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_dw5na"]
 resource_name = "show_screen"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -78,7 +78,7 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -140,7 +140,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_pky7y"]
 resource_name = "hide_screen"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -148,7 +148,7 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -160,7 +160,7 @@ tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -182,7 +182,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_h7omm"]
 resource_name = "show_screen"
-length = 0.5
+length = 0.3
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -203,7 +203,7 @@ tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -215,7 +215,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(0.3),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -844,10 +844,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -27.0
-offset_top = 40.0
-offset_right = -27.0
-offset_bottom = 40.0
+offset_left = -25.0
+offset_top = 46.0
+offset_right = -25.0
+offset_bottom = 46.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -883,17 +883,6 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
-
-[node name="ButtonCross" parent="CanvasLayer/EditScreen/VBoxContainer/Control_Up" instance=ExtResource("5_vixu2")]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -23.0
-offset_top = 7.0
-offset_right = -7.0
-offset_bottom = 23.0
-grow_horizontal = 0
 
 [node name="Control_Mid" type="Control" parent="CanvasLayer/EditScreen/VBoxContainer"]
 layout_mode = 2
@@ -932,6 +921,38 @@ texture = SubResource("AtlasTexture_wl3f8")
 [node name="Marker2D_Begin" type="Marker2D" parent="CanvasLayer/EditScreen/VBoxContainer/Control_Down/TextureRect_ItemsPanel"]
 position = Vector2(14, 19)
 
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/EditScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control_Left" type="Control" parent="CanvasLayer/EditScreen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="ButtonDeleteBlock" parent="CanvasLayer/EditScreen/HBoxContainer/Control_Left" instance=ExtResource("7_ba4dr")]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 145.0
+offset_right = 20.0
+offset_bottom = 161.0
+
+[node name="Control_Mid" type="Control" parent="CanvasLayer/EditScreen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 8.0
+mouse_filter = 2
+
+[node name="Control_Right" type="Control" parent="CanvasLayer/EditScreen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/EditScreen"]
 libraries = {
 "": SubResource("AnimationLibrary_8tskc")
@@ -964,4 +985,4 @@ one_shot = true
 
 [connection signal="pressed" from="CanvasLayer/StatusScreen/ButtonEdit" to="CanvasLayer/StatusScreen" method="_on_button_edit_pressed"]
 [connection signal="pressed" from="CanvasLayer/StatusScreen/ButtonEdit" to="CanvasLayer/EditScreen" method="_on_button_edit_pressed"]
-[connection signal="pressed" from="CanvasLayer/EditScreen/VBoxContainer/Control_Up/ButtonCross" to="CanvasLayer/EditScreen" method="_on_button_cross_pressed"]
+[connection signal="pressed" from="CanvasLayer/EditScreen/HBoxContainer/Control_Left/ButtonDeleteBlock" to="CanvasLayer/EditScreen" method="_on_button_delete_block_pressed"]

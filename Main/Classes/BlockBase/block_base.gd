@@ -1,6 +1,8 @@
 class_name BlockBase
 extends RigidBody2D
 
+@onready var sprite_2d_icon: Sprite2D = $Sprite2D_Icon
+
 @onready var collision_shape_2d_phy: CollisionShape2D = $CollisionShape2D_Phy
 @onready var area_2d_drag: Area2D = $Area2D_Drag
 @onready var line_2d_combine: Line2D = $Line2D_Combine
@@ -34,6 +36,8 @@ var rotation_speed = 15
 var move_speed = 100
 var rotation_threshold = 0.1  # 设置旋转的阈值
 var position_threshold = 0.1  # 设置位置的阈值
+
+var tween_scale: Tween
 
 func _ready() -> void:
 	freeze_mode = FreezeMode.FREEZE_MODE_STATIC
@@ -160,9 +164,28 @@ func transition_state(to: State) -> void:
 			set_physics_process(false)
 
 	state = to
+	
+func animate_scale(is_reduce: bool) -> void:
+	if tween_scale and tween_scale.is_running():
+		tween_scale.kill()
+	
+	tween_scale = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	
+	if is_reduce:
+		tween_scale.tween_property(sprite_2d_icon, "scale", Vector2(0.8, 0.8), 0.2)
+	else:
+		tween_scale.tween_property(sprite_2d_icon, "scale", Vector2(1.0, 1.0), 0.2)
 
 func _on_area_2d_drag_area_entered(area: Area2D) -> void:
 	blocks_nearby.append(area.owner)
 
 func _on_area_2d_drag_area_exited(area: Area2D) -> void:
 	blocks_nearby.erase(area.owner)
+
+func _on_area_2d_mouse_mouse_entered() -> void:
+	animate_scale(true)
+	print("In")
+
+func _on_area_2d_mouse_mouse_exited() -> void:
+	animate_scale(false)
+	print("Out")
