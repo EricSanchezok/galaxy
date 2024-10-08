@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bqxynhnxmn054" path="res://Main/Classes/BlockBase/block_base.tscn" id="1_atuuj"]
 [ext_resource type="Script" path="res://Main/Scenes/Blocks/Structures/LightArmor/light_armor.gd" id="2_mwqnf"]
 [ext_resource type="Texture2D" uid="uid://bibdplx8c4qiv" path="res://Assets/Blocks/Blocks.png" id="2_nf01o"]
-[ext_resource type="Script" path="res://Main/Classes/CombiningMarker/combining_marker.gd" id="4_plxb5"]
+[ext_resource type="PackedScene" uid="uid://cptpmhqdqkkvy" path="res://Main/Classes/CombiningMarker/combining_marker.tscn" id="4_4dvks"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d0mhx"]
 atlas = ExtResource("2_nf01o")
@@ -24,23 +24,19 @@ texture = SubResource("AtlasTexture_d0mhx")
 [node name="CollisionShape2D_Phy" parent="." index="1"]
 shape = SubResource("RectangleShape2D_knscl")
 
-[node name="CombiningMarker" type="Marker2D" parent="CombiningMarkers" index="0"]
-position = Vector2(0, 8)
-script = ExtResource("4_plxb5")
-marker_dir = 1
+[node name="CombiningMarker" parent="CombiningMarkers" index="0" instance=ExtResource("4_4dvks")]
+position = Vector2(0, -8)
 
-[node name="CombiningMarker2" type="Marker2D" parent="CombiningMarkers" index="1"]
+[node name="CombiningMarker2" parent="CombiningMarkers" index="1" instance=ExtResource("4_4dvks")]
 position = Vector2(8, 0)
-script = ExtResource("4_plxb5")
 marker_dir = 3
 
-[node name="CombiningMarker3" type="Marker2D" parent="CombiningMarkers" index="2"]
-position = Vector2(0, -8)
-script = ExtResource("4_plxb5")
+[node name="CombiningMarker3" parent="CombiningMarkers" index="2" instance=ExtResource("4_4dvks")]
+position = Vector2(0, 8)
+marker_dir = 1
 
-[node name="CombiningMarker4" type="Marker2D" parent="CombiningMarkers" index="3"]
+[node name="CombiningMarker4" parent="CombiningMarkers" index="3" instance=ExtResource("4_4dvks")]
 position = Vector2(-8, 0)
-script = ExtResource("4_plxb5")
 marker_dir = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Drag" index="0"]

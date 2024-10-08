@@ -15,6 +15,10 @@ run/main_scene="res://Main/Maps/TestMap/test_map.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+CoreManager="*res://Main/Global/CoreManager/core_manager.gd"
+
 [debug]
 
 file_logging/enable_file_logging.pc=false

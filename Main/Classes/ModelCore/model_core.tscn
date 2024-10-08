@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://Main/Classes/ModelCore/model_core.gd" id="1_ees4q"]
 
 [node name="ModelCore" type="RigidBody2D"]
+collision_mask = 7
 input_pickable = true
-sleeping = true
+center_of_mass_mode = 1
 script = ExtResource("1_ees4q")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D_Convex" type="CollisionPolygon2D" parent="."]

@@ -13,6 +13,8 @@ var blocks = {
 	1: preload("res://Main/Scenes/Blocks/Structures/HeavyArmor/heavy_armor.tscn")
 }
 
+var block_combining: bool = false
+
 var items = []
 var prep_blocks = []
 
@@ -59,10 +61,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			item_index = clampi(item_index - 1, 0, 5)
 		elif event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			if not is_instance_valid(prep_blocks[-1]) or len(prep_blocks) == 0:
-				print("当前没有方块")
+			if not is_instance_valid(prep_blocks[-1]) or len(prep_blocks) == 0 or block_combining:
+				print("当前没有方块或当前方块并没有合并完成")
 			else:
 				prep_blocks[-1].transition_state(BlockBase.State.WAIT)
+				block_combining = true
+				prep_blocks[-1].block_combine_finished.connect(_on_block_combine_finished)
+
 				prep_blocks.erase(prep_blocks[-1])
 				
 				add_prep_block(item_index)
@@ -128,3 +133,6 @@ func _on_button_cross_pressed() -> void:
 
 func _on_button_edit_pressed() -> void:
 	show_screen()
+
+func _on_block_combine_finished() -> void:
+	block_combining = false

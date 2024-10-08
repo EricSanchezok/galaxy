@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bahct5h3doi1n"]
+
+[ext_resource type="Script" path="res://Test/AdjacencyList/adjacency_list.gd" id="1_g4pgm"]
+
+[node name="AdjacencyList" type="Node"]
+script = ExtResource("1_g4pgm")
