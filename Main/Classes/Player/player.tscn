@@ -983,6 +983,8 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [connection signal="pressed" from="CanvasLayer/StatusScreen/ButtonEdit" to="CanvasLayer/StatusScreen" method="_on_button_edit_pressed"]
 [connection signal="pressed" from="CanvasLayer/StatusScreen/ButtonEdit" to="CanvasLayer/EditScreen" method="_on_button_edit_pressed"]
 [connection signal="pressed" from="CanvasLayer/EditScreen/HBoxContainer/Control_Left/ButtonDeleteBlock" to="CanvasLayer/EditScreen" method="_on_button_delete_block_pressed"]

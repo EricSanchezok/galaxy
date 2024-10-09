@@ -119,14 +119,15 @@ func _on_unhandled_input_placement(event) -> void:
 func _on_unhandled_input_destruction(event) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			var selected_block = GlobalVars.selected_block
-			if selected_block == null:
+			var selected_blocks = GlobalVars.selected_blocks
+			if len(selected_blocks) == 0:
 				print("没有选择删除的方块")
 				return
-			if selected_block.core == null:
-				selected_block.queue_free()
+			var block = selected_blocks[-1]
+			if block.core == null:
+				block.queue_free()
 			else:
-				selected_block.core.delete_block(selected_block)
+				block.core.delete_block(block)
 
 func add_item(index: int, id: int) -> void:
 	items[index].icon_id = id

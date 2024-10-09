@@ -32,8 +32,8 @@ var core: ModelCore = null
 var max_lengh: int = 1
 
 signal block_combine_finished
-var rotation_speed = 15
-var move_speed = 100
+var rotation_speed = 30
+var move_speed = 300
 var rotation_threshold = 0.1  # 设置旋转的阈值
 var position_threshold = 0.1  # 设置位置的阈值
 
@@ -186,10 +186,10 @@ func _on_area_2d_mouse_mouse_entered() -> void:
 	if not GlobalVars.can_delete_block:
 		return
 	animate_scale(true)
-	GlobalVars.selected_block = self
+	GlobalVars.selected_blocks.append(self)
 
 func _on_area_2d_mouse_mouse_exited() -> void:
 	if not GlobalVars.can_delete_block:
 		return
 	animate_scale(false)
-	GlobalVars.selected_block = null
+	GlobalVars.selected_blocks.erase(self)

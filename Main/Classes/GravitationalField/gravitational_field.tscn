@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2d74k8bc28bc"]
+
+[ext_resource type="Script" path="res://Main/Classes/GravitationalField/gravitational_field.gd" id="1_5yh2w"]
+
+[node name="GravitationalField" type="Area2D"]
+script = ExtResource("1_5yh2w")
+
+[node name="CollisionShape2D_Grav" type="CollisionShape2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

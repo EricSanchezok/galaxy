@@ -8,6 +8,8 @@ var graph = {}
 var total_mass = 0.0
 var mass_center = Vector2.ZERO
 
+signal core_free(core: ModelCore)
+
 func add_block(block: BlockBase) -> void:
 	# print("Add block: ", block)
 	block.core = self
@@ -74,14 +76,88 @@ func delete_block(block: BlockBase) -> void:
 	graph[block]['collision_shape'].queue_free()
 	block.queue_free()
 	
+	for neighbor in graph[block]['neighbors']:
+		if graph.has(neighbor):
+			graph[neighbor]['neighbors'].erase(block)  # 从邻接表中移除连接
 	graph.erase(block)
 	
+	if check_alone():
+		var _block = graph.keys()[0]
+		_block.reparent(get_tree().root, true)
+		_block.transition_state(BlockBase.State.SINGLE)
+		core_free.emit(self)
+		queue_free()
+		return
+	
+	var new_graphs: Array = check_connected_components()
+	
+	if len(new_graphs) == 1:
+		return
+		
+	for _graph in new_graphs:
+		CoreManager.new_core(_graph)
+	
+	core_free.emit(self)
+	queue_free()
+
+			
+func check_alone() -> bool:
 	if len(graph) == 1:
-		print("只剩最后一个啦")
-		for _block in graph.keys():
-			_block.reparent(get_tree().root, true)
-			_block.transition_state(BlockBase.State.SINGLE)
-			queue_free()
+		return true
+	return false
+			
+# 深度优先搜索函数
+func dfs(node: BlockBase, visited: Dictionary):
+	visited[node] = true  # 标记为已访问
+	for neighbor in graph[node]['neighbors']:
+		if not visited.has(neighbor):
+			dfs(neighbor, visited)
+		
+func check_connected_components() -> Array:
+	var visited = {}  # 存储访问过的节点
+	var components = []  # 存储连通分量
+	var new_graphs = []  # 存储新的邻接图
+
+	# 遍历所有节点
+	for node in graph.keys():
+		if not visited.has(node):
+			var component = []  # 创建新的组件
+			dfs(node, visited)  # 执行 DFS
+			
+			# 记录当前组件
+			for v in visited.keys():
+				if visited[v]:
+					component.append(v)  # 添加到当前组件
+			
+			components.append(component)  # 添加到组件列表
+			
+			# 创建新的邻接图
+			var new_graph = {}  # 新的邻接图
+			for v in component:
+				new_graph[v] = {
+					"neighbors": [],
+					"position": graph[v]["position"]  # 复制坐标信息
+				}
+				for neighbor in graph[v]["neighbors"]:
+					if neighbor in component:  # 只保留在当前组件内的连接
+						new_graph[v]["neighbors"].append(neighbor)
+
+			new_graphs.append(new_graph)  # 添加新的邻接图
+			
+			# 在这里重置 visited 的访问状态
+			for v in component:
+				visited[v] = false  # 重置当前组件内的节点状态
+
+	# 打印连通分量
+	for i in range(components.size()):
+		print("Component %d: %s" % [i, str(components[i])])
+		
+	# 打印新的邻接图
+	for i in range(new_graphs.size()):
+		print("New Graph %d: %s" % [i, str(new_graphs[i])])
+		
+	return new_graphs
+
 	
 func corrected_transform(block: BlockBase) -> void:
 	if block not in graph:
