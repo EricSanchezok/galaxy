@@ -4,14 +4,9 @@ extends RigidBody2D
 @onready var collision_polygon_2d_convex: CollisionPolygon2D = $CollisionPolygon2D_Convex
 @onready var marker_2d_mass: Marker2D = $Marker2D_Mass
 
-
-var core_id: int = -1
-
 var graph = {}
-
 var total_mass = 0.0
 var mass_center = Vector2.ZERO
-
 
 func add_block(block: BlockBase) -> void:
 	# print("Add block: ", block)
@@ -42,15 +37,17 @@ func add_block(block: BlockBase) -> void:
 						my_combine_marker.lock = true
 						combine_marker.lock = true
 					
-	get_tree().root.remove_child(block)
-	add_child(block)
+	block.reparent(self, true)
 	corrected_transform(block)
 	
 	var new_collision_shape = CollisionShape2D.new()
 	new_collision_shape.shape = block.collision_shape_2d_phy.shape.duplicate()
 	new_collision_shape.position = block.position
 	new_collision_shape.rotation = block.rotation
+	new_collision_shape.debug_color = Color(Color.HOT_PINK, 0.5)
 	add_child(new_collision_shape)
+	
+	graph[block]['collision_shape'] = new_collision_shape
 
 	total_mass += block.mass
 	mass = total_mass
@@ -61,13 +58,36 @@ func add_block(block: BlockBase) -> void:
 	marker_2d_mass.position = center_of_mass
 
 	block.block_combine_finished.emit()
-
+	
+func delete_block(block: BlockBase) -> void:
+	print("Delete Block: ", block)
+	block.core == null
+	
+	total_mass -= block.mass
+	mass = total_mass
+	
+	mass_center -= block.position * block.mass
+	center_of_mass = mass_center / total_mass
+	
+	marker_2d_mass.position = center_of_mass
+	
+	graph[block]['collision_shape'].queue_free()
+	block.queue_free()
+	
+	graph.erase(block)
+	
+	if len(graph) == 1:
+		print("只剩最后一个啦")
+		for _block in graph.keys():
+			_block.reparent(get_tree().root, true)
+			_block.transition_state(BlockBase.State.SINGLE)
+			queue_free()
+	
 func corrected_transform(block: BlockBase) -> void:
 	if block not in graph:
 		return
 	block.position = graph[block]['position'] * 16.0
 	block.rotation_degrees = round(fmod(block.rotation_degrees, 360.0) / 90) * 90
-	
 
 func print_graph() -> void:
 	for block in graph.keys():

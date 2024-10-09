@@ -183,9 +183,13 @@ func _on_area_2d_drag_area_exited(area: Area2D) -> void:
 	blocks_nearby.erase(area.owner)
 
 func _on_area_2d_mouse_mouse_entered() -> void:
+	if not GlobalVars.can_delete_block:
+		return
 	animate_scale(true)
-	print("In")
+	GlobalVars.selected_block = self
 
 func _on_area_2d_mouse_mouse_exited() -> void:
+	if not GlobalVars.can_delete_block:
+		return
 	animate_scale(false)
-	print("Out")
+	GlobalVars.selected_block = null

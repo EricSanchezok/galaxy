@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 CoreManager="*res://Main/Global/CoreManager/core_manager.gd"
+GlobalVars="*res://Main/Global/GlobalVars/global_vars.gd"
 
 [debug]
 

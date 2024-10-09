@@ -4,7 +4,6 @@
 
 [node name="BlockBase" type="RigidBody2D"]
 collision_mask = 7
-input_pickable = true
 freeze_mode = 1
 script = ExtResource("1_elwo3")
 
@@ -15,7 +14,6 @@ script = ExtResource("1_elwo3")
 [node name="CombiningMarkers" type="Node2D" parent="."]
 
 [node name="Area2D_Drag" type="Area2D" parent="."]
-visible = false
 collision_layer = 8
 collision_mask = 8
 

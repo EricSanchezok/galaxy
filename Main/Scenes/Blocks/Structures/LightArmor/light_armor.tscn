@@ -44,10 +44,9 @@ position = Vector2(-8, 0)
 marker_dir = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Drag" index="0"]
+visible = false
 shape = SubResource("CircleShape2D_h08h1")
 
-[node name="Area2D_Mouse" parent="." index="5"]
-visible = false
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Mouse" index="0"]
+visible = false
 shape = SubResource("RectangleShape2D_mx0hh")

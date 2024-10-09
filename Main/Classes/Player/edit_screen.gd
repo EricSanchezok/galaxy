@@ -96,12 +96,12 @@ func _on_unhandled_input_placement(event) -> void:
 		elif event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if not is_instance_valid(prep_blocks[-1]) or len(prep_blocks) == 0 or block_combining:
 				print("当前没有方块或当前方块并没有合并完成")
-			else:
-				prep_blocks[-1].transition_state(BlockBase.State.WAIT)
-				block_combining = true
-				prep_blocks[-1].block_combine_finished.connect(_on_block_combine_finished)
-				prep_blocks.erase(prep_blocks[-1])
-				add_prep_block(item_index)
+				return
+			prep_blocks[-1].transition_state(BlockBase.State.WAIT)
+			block_combining = true
+			prep_blocks[-1].block_combine_finished.connect(_on_block_combine_finished)
+			prep_blocks.erase(prep_blocks[-1])
+			add_prep_block(item_index)
 		
 	if event.is_action_pressed("1"):
 		item_index = 0
@@ -117,7 +117,16 @@ func _on_unhandled_input_placement(event) -> void:
 		item_index = 5
 
 func _on_unhandled_input_destruction(event) -> void:
-	pass
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			var selected_block = GlobalVars.selected_block
+			if selected_block == null:
+				print("没有选择删除的方块")
+				return
+			if selected_block.core == null:
+				selected_block.queue_free()
+			else:
+				selected_block.core.delete_block(selected_block)
 
 func add_item(index: int, id: int) -> void:
 	items[index].icon_id = id
@@ -162,13 +171,13 @@ func transition_state(from: State, to: State) -> void:
 		State.PLACEMENT:
 			hide_prep_blocks()
 		State.DESTRUCTION:
-			pass
+			GlobalVars.can_delete_block = false
 
 	match to:
 		State.PLACEMENT:
 			show_prep_blocks()
 		State.DESTRUCTION:
-			pass
+			GlobalVars.can_delete_block = true
 
 	state = to
 
@@ -195,6 +204,7 @@ func _on_button_edit_pressed() -> void:
 
 func _on_button_delete_block_pressed() -> void:
 	transition_state(state, State.DESTRUCTION)
+	
 
 func _on_block_combine_finished() -> void:
 	block_combining = false
