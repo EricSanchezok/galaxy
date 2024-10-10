@@ -1,6 +1,6 @@
 extends Button
 
-@onready var texture_rect_icon: TextureRect = $TextureRect_Icon
+@onready var texture_rect_texture: TextureRect = $TextureRect_Texture
 
 var tween_color: Tween
 var tween_scale: Tween

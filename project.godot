@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Galaxy"
-run/main_scene="res://Main/Maps/TestMap/test_map.tscn"
+run/main_scene="res://Main/Maps/Main/main_map.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -111,13 +111,6 @@ Esc={
 2d_physics/layer_3="Player"
 2d_physics/layer_4="BlockDrag"
 2d_physics/layer_5="BlockMouse"
-
-[physics]
-
-2d/default_gravity=0.0
-2d/default_gravity_vector=Vector2(0, 0)
-2d/default_linear_damp=0.0
-2d/default_angular_damp=0.0
 
 [rendering]
 

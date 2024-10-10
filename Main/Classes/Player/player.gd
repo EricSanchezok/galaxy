@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@onready var sprite_2d_icon: Sprite2D = $Sprite2D_Icon
+@onready var sprite_2d_texture: Sprite2D = $Sprite2D_Texture
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var jump_request_timer: Timer = $JumpRequestTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -23,7 +23,7 @@ func move(gravity: float, _delta: float) -> void:
 	velocity.y += gravity * _delta
 	
 	if not is_zero_approx(direction):
-		sprite_2d_icon.flip_h = direction < 0
+		sprite_2d_texture.flip_h = direction < 0
 
 	move_and_slide()
 	

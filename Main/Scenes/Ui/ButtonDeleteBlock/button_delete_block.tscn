@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://cplec8vnuoeeu" path="res://Main/Classes/Button/my_button.tscn" id="1_otsox"]
 [ext_resource type="Texture2D" uid="uid://ck1362ctg5b0f" path="res://Assets/Ui/Ui.png" id="3_52fbl"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ovuw7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n20i4"]
 atlas = ExtResource("3_52fbl")
 region = Rect2(64, 0, 16, 16)
 
 [node name="ButtonDeleteBlock" instance=ExtResource("1_otsox")]
 
-[node name="TextureRect_Icon" parent="." index="0"]
-texture = SubResource("AtlasTexture_ovuw7")
+[node name="TextureRect_Texture" parent="." index="0"]
+texture = SubResource("AtlasTexture_n20i4")

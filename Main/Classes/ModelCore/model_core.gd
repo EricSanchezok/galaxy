@@ -63,7 +63,7 @@ func add_block(block: BlockBase) -> void:
 	
 func delete_block(block: BlockBase) -> void:
 	print("Delete Block: ", block)
-	block.core == null
+	block.core = null
 	
 	total_mass -= block.mass
 	mass = total_mass

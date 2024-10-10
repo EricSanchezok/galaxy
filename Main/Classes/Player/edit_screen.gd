@@ -10,6 +10,7 @@ const ITEM_ICON = preload("res://Main/Classes/ItemIcon/item_icon.tscn")
 
 @onready var button_delete_block: Button = $HBoxContainer/Control_Left/ButtonDeleteBlock
 
+@onready var camera_2d: Camera2D = $"../../Camera2D"
 
 var blocks = {
 	0: preload("res://Main/Scenes/Blocks/Structures/LightArmor/light_armor.tscn"),
@@ -136,8 +137,9 @@ func remove_item(index: int) -> void:
 	items[index].icon_id = -1
 
 func block_follow_cursor() -> void:
-	var mouse_position = get_global_mouse_position()
-
+	var mouse_position = get_global_mouse_position() + camera_2d.global_position - get_viewport_rect().size / 2
+	print(camera_2d.global_position)
+	# print(mouse_position + camera_2d.global_position)
 	if len(prep_blocks) > 0 and is_instance_valid(prep_blocks[-1]) and prep_blocks[-1].state == BlockBase.State.ON_CURSOR:
 		prep_blocks[-1].global_position = mouse_position
 		prep_blocks[-1].rotation = block_rotation

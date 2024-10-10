@@ -9,7 +9,7 @@ pivot_offset = Vector2(8, 8)
 theme = ExtResource("1_5ex3f")
 script = ExtResource("1_btbsj")
 
-[node name="TextureRect_Icon" type="TextureRect" parent="."]
+[node name="TextureRect_Texture" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 0
 offset_right = 16.0

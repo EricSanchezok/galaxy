@@ -1,8 +1,7 @@
 class_name BlockBase
 extends RigidBody2D
 
-@onready var sprite_2d_icon: Sprite2D = $Sprite2D_Icon
-
+@onready var sprite_2d_texture: Sprite2D = $Sprite2D_Texture
 @onready var collision_shape_2d_phy: CollisionShape2D = $CollisionShape2D_Phy
 @onready var area_2d_drag: Area2D = $Area2D_Drag
 @onready var line_2d_combine: Line2D = $Line2D_Combine
@@ -172,9 +171,9 @@ func animate_scale(is_reduce: bool) -> void:
 	tween_scale = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	
 	if is_reduce:
-		tween_scale.tween_property(sprite_2d_icon, "scale", Vector2(0.8, 0.8), 0.2)
+		tween_scale.tween_property(sprite_2d_texture, "scale", Vector2(0.8, 0.8), 0.2)
 	else:
-		tween_scale.tween_property(sprite_2d_icon, "scale", Vector2(1.0, 1.0), 0.2)
+		tween_scale.tween_property(sprite_2d_texture, "scale", Vector2(1.0, 1.0), 0.2)
 
 func _on_area_2d_drag_area_entered(area: Area2D) -> void:
 	blocks_nearby.append(area.owner)

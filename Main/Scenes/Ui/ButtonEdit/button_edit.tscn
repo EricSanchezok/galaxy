@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://dtwr4uub3u5j3"]
 
 [ext_resource type="PackedScene" uid="uid://cplec8vnuoeeu" path="res://Main/Classes/Button/my_button.tscn" id="1_nfxdq"]
-[ext_resource type="Texture2D" uid="uid://ck1362ctg5b0f" path="res://Assets/Ui/Ui.png" id="2_torwd"]
+[ext_resource type="Texture2D" uid="uid://ck1362ctg5b0f" path="res://Assets/Ui/Ui.png" id="2_sdql3"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pw6e4"]
-atlas = ExtResource("2_torwd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_j11t0"]
+atlas = ExtResource("2_sdql3")
 region = Rect2(0, 0, 16, 16)
 
 [node name="ButtonEdit" instance=ExtResource("1_nfxdq")]
@@ -14,5 +14,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 icon_alignment = 1
 
-[node name="TextureRect_Icon" parent="." index="0"]
-texture = SubResource("AtlasTexture_pw6e4")
+[node name="TextureRect_Texture" parent="." index="0"]
+texture = SubResource("AtlasTexture_j11t0")
